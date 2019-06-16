@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>毕业明信片生成 | 青春在线</title>
+    <script src="./js/jquery-1.10.1.min.js"></script>
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/js.js"></script>
+    <link rel="shortcut icon" href="https://youthlab.sdut.edu.cn/default/favicon.ico">
+</head>
+
+<body class="body">
+    <div class="background">
+        <div class="big_title">
+            <span class="big_title_span">毕业明信片生成小工具</span>
+        </div>
+        <div class="small_title">青春在线提供技术支持</div>
+        <div class="main">
+            <div class="guide">第一步：选择明信片正面</div>
+            <!-- 正面就是贴邮票的那一面 -->
+            <div class="swiper-container swipers">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="imgs">
+                            <img src="./img/postcard1_front.png" id="front-img1" width="100%" height="100%">
+                        </div>
+                        <div class="button_div">
+                            长按图片，即可保存到手机哦~
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs">
+                            <img src="./img/postcard2_front.png" id="front-img2" width="100%" height="100%">
+                        </div>
+                        <div class="button_div">
+                            长按图片，即可保存到手机哦~
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs">
+                            <img src="./img/postcard3_front.png" id="front-img3" width="100%" height="100%">
+                        </div>
+                        <div class="button_div">
+                            长按图片，即可保存到手机哦~
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs">
+                            <img src="./img/postcard4_front.png" id="front-img4" width="100%" height="100%">
+                        </div>
+                        <div class="button_div">
+                            长按图片，即可保存到手机哦~
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="guide">第二步：选择明信片反面</div>
+            <!-- 反面就是写祝福话语的那一面 -->
+            <div class="swiper-container swipers">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="imgs">
+                            <img src="./img/postcard1_behind.png" id="behind-img1" width="100%" height="100%">
+                        </div>
+                        <div class="button_div">
+                            <button id="behind-btn1" onclick="behind_img1()">选择这张图片作为反面</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs">
+                            <img src="./img/postcard2_behind.png" id="behind-img2" width="100%" height="100%">
+                        </div>
+                        <div class="button_div">
+                            <button id="behind-btn2" onclick="behind_img2()">选择这张图片作为反面</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs">
+                            <img src="./img/postcard3_behind.png" id="behind-img3" width="100%" height="100%">
+                        </div>
+                        <div class="button_div">
+                            <button id="behind-btn3" onclick="behind_img3()">选择这张图片作为反面</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs">
+                            <img src="./img/postcard4_behind.png" id="behind-img4" width="100%" height="100%">
+                        </div>
+                        <div class="button_div">
+                            <button id="behind-btn4" onclick="behind_img4()">选择这张图片作为反面</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="guide">第三步：上传贴在明信片反面的照片</div>
+            <!-- 自选照片，用户可以自己上传照片 -->
+            <div class="swipers">
+                <div class="tips">
+                    <a href="javascript:;" class="file">上传我的照片
+                        <input type="file" id="photo-img3" multiple />
+                    </a>
+                </div>
+                <div class="photo-img3">
+                    <img src="./img/none.png" id="photo-img3-preview" width="100%" height="100%">
+                </div>
+                <div class="button_div">
+                    <button id="photo-btn3" onclick="photo_img3()">选择这张照片贴在反面</button>
+                </div>
+            </div>
+        </div>
+        <div id="choice" style="display: none">
+            <img src="" id="choice-behind">
+            <img src="" id="choice-photo">
+        </div>
+        <div class="main">
+            <div class="preview swipers">
+                <div class="guide">
+                    第四步：生成我的明信片
+                    <button onclick="mixture()">生成明信片</button>
+                </div>
+                <div style="margin-bottom: 10px">
+                    明信片预览，长按图片保存到手机哦~
+                </div>
+                <div class="preview_img">
+                    <img src="./img/none.png" id="result" width="100%" height="100%">
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright © 2019 青春在线
+        </div>
+    </div>
+    <script src="./js/swiper.min.js"></script>
+    <script>
+        // Init Swiper 初始化
+        var mySwiper = new Swiper('.swiper-container', {
+            mousewheel: true,
+            keyboard: true,
+            enabled: true,
+            speed: 550,
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'progressbar',
+                clickable: true,
+            },
+            debugger: false,
+        });
+    </script>
+</body>
+
+</html>
